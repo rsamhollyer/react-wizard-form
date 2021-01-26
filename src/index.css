@@ -28,11 +28,24 @@ code {
 	margin: 5px;
 	padding: 5px;
 	justify-content: space-between;
+	align-items: center;
+}
+
+.form-group {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+}
+
+.form-label {
+	margin-bottom: 3px;
+	border-bottom: 0.5px solid blue;
 }
 
 .input-tag {
 	border: 2px black solid;
 	text-align: center;
+	align-self: center;
 }
 
 .submit-form {

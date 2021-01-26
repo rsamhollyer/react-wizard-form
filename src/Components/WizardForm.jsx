@@ -8,13 +8,17 @@ const WizardForm = (props) => {
 		<section className="wizard-form-section">
 			<h1>Wizard Form</h1>
 			<form className="wizard-form">
-				<label htmlFor="wizard-name">
+				<div className="form-group">
+					<label className="form-label" htmlFor="wizard-name">
+						Name :
+					</label>
+
 					<input
 						className="input-tag"
 						placeholder="name"
 						onChange={(e) => {
 							let valueTarget = e.target.value;
-							console.log("Name value", valueTarget);
+							console.log("Name value :", valueTarget);
 							setName(valueTarget);
 						}}
 						id="wizard-name"
@@ -22,15 +26,17 @@ const WizardForm = (props) => {
 						type="text"
 						value={name}
 					/>
-				</label>
-
-				<label htmlFor="wizard-job">
+				</div>
+				<div className="form-group">
+					<label className="form-label" htmlFor="wizard-job">
+						Job :
+					</label>
 					<input
 						className="input-tag"
 						placeholder="job"
 						onChange={(e) => {
 							let valueTarget = e.target.value;
-							console.log("Name value", valueTarget);
+							console.log("Job value :", valueTarget);
 							setJob(valueTarget);
 						}}
 						id="wizard-job"
@@ -38,15 +44,17 @@ const WizardForm = (props) => {
 						type="text"
 						value={job}
 					/>
-				</label>
-
-				<label htmlFor="wizard-house">
+				</div>
+				<div className="form-group">
+					<label className="form-label" htmlFor="wizard-house">
+						House :
+					</label>
 					<input
 						className="input-tag"
 						placeholder="house"
 						onChange={(e) => {
 							let valueTarget = e.target.value;
-							console.log("Name value", valueTarget);
+							console.log("House value :", valueTarget);
 							setHouse(valueTarget);
 						}}
 						id="wizrd-house"
@@ -54,7 +62,7 @@ const WizardForm = (props) => {
 						type="text"
 						value={house}
 					/>
-				</label>
+				</div>
 				<input className="submit-form" type="submit" value="Submit" />
 			</form>
 		</section>
