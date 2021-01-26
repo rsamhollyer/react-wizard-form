@@ -7,6 +7,11 @@ const WizardForm = (props) => {
 
 	const { onSubmit, title } = props;
 
+	const capitalizeFunction = (s) => {
+		s = s.toLowerCase();
+		return s.charAt(0).toUpperCase() + s.slice(1).trim();
+	};
+
 	return (
 		<section className="wizard-form-section">
 			<h1>{title}</h1>
@@ -15,7 +20,11 @@ const WizardForm = (props) => {
 				onSubmit={(e) => {
 					e.preventDefault();
 
-					const wizardObject = { name, job, house };
+					const wizardObject = {
+						name: capitalizeFunction(name),
+						job: capitalizeFunction(job),
+						house: capitalizeFunction(house),
+					};
 
 					onSubmit(wizardObject);
 
@@ -34,7 +43,6 @@ const WizardForm = (props) => {
 						placeholder="name"
 						onChange={(e) => {
 							let valueTarget = e.target.value;
-
 							setName(valueTarget);
 						}}
 						id="wizard-name"
@@ -52,7 +60,6 @@ const WizardForm = (props) => {
 						placeholder="job"
 						onChange={(e) => {
 							let valueTarget = e.target.value;
-
 							setJob(valueTarget);
 						}}
 						id="wizard-job"
@@ -70,7 +77,6 @@ const WizardForm = (props) => {
 						placeholder="house"
 						onChange={(e) => {
 							let valueTarget = e.target.value;
-
 							setHouse(valueTarget);
 						}}
 						id="wizard-house"

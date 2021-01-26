@@ -11,9 +11,6 @@ function App() {
 			<WizardForm
 				title="Add new Wizard"
 				onSubmit={(wizard) => {
-					console.log(`================`);
-					console.log(`Your new Wizard`, wizard);
-					console.log(`================`);
 					setWizard([...wizards, wizard]);
 				}}
 			/>

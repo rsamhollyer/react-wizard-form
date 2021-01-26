@@ -9,7 +9,7 @@ export default function WizardList(props) {
 			) : (
 				wizards.map((w) => (
 					<li key={w.name}>
-						{w.name} {w.job} {w.house}
+						{w.name} : {w.job} - {w.house}
 					</li>
 				))
 			)}
