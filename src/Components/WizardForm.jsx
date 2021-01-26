@@ -4,10 +4,26 @@ const WizardForm = (props) => {
 	const [name, setName] = useState("");
 	const [job, setJob] = useState("");
 	const [house, setHouse] = useState("");
+
+	const { onSubmit, title } = props;
+
 	return (
 		<section className="wizard-form-section">
-			<h1>Wizard Form</h1>
-			<form className="wizard-form">
+			<h1>{title}</h1>
+			<form
+				className="wizard-form"
+				onSubmit={(e) => {
+					e.preventDefault();
+
+					const wizardObject = { name, job, house };
+
+					onSubmit(wizardObject);
+
+					setName("");
+					setJob("");
+					setHouse("");
+				}}
+			>
 				<div className="form-group">
 					<label className="form-label" htmlFor="wizard-name">
 						Name :
@@ -18,7 +34,7 @@ const WizardForm = (props) => {
 						placeholder="name"
 						onChange={(e) => {
 							let valueTarget = e.target.value;
-							console.log("Name value :", valueTarget);
+
 							setName(valueTarget);
 						}}
 						id="wizard-name"
@@ -36,7 +52,7 @@ const WizardForm = (props) => {
 						placeholder="job"
 						onChange={(e) => {
 							let valueTarget = e.target.value;
-							console.log("Job value :", valueTarget);
+
 							setJob(valueTarget);
 						}}
 						id="wizard-job"
@@ -54,11 +70,11 @@ const WizardForm = (props) => {
 						placeholder="house"
 						onChange={(e) => {
 							let valueTarget = e.target.value;
-							console.log("House value :", valueTarget);
+
 							setHouse(valueTarget);
 						}}
-						id="wizrd-house"
-						name="wizard-housr"
+						id="wizard-house"
+						name="wizard-house"
 						type="text"
 						value={house}
 					/>
