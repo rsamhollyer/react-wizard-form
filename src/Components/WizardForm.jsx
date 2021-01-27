@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { setToNull } from "../utils";
 
 const WizardForm = (props) => {
 	const [name, setName] = useState("");
@@ -27,10 +28,7 @@ const WizardForm = (props) => {
 					};
 
 					onSubmit(wizardObject);
-
-					setName("");
-					setJob("");
-					setHouse("");
+					setToNull("", [setName, setJob, setHouse]);
 				}}
 			>
 				<div className="form-group">
