@@ -1,12 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { setToNull, capitalizeFunction } from "../utils";
-
+import { v4 as uuidv4 } from "uuid";
 const WizardForm = (props) => {
 	const [name, setName] = useState("");
 	const [job, setJob] = useState("");
 	const [house, setHouse] = useState("");
 
-	const { onSubmit, title } = props;
+	const { onSubmit, title, wizardToEdit } = props;
+
+	// When we get new props, run some code.
+	// Specifically, we want to set our states using the wizardToEdit
+
+	useEffect(() => {
+		// NEVER modify the variable you're watching.
+		// That causes an infinite loop
+
+		if (wizardToEdit) {
+			setName(wizardToEdit.name);
+			setJob(wizardToEdit.job);
+			setHouse(wizardToEdit.house);
+		}
+	}, [wizardToEdit]);
+
+	// The array is known as the 'dependecy' array
 
 	return (
 		<section className="wizard-form-section">
@@ -20,15 +36,29 @@ const WizardForm = (props) => {
 						name,
 						job,
 						house,
+						id: uuidv4(),
 					};
+					console.log(wizardObject);
+
+					if (wizardToEdit) {
+						wizardObject.id = wizardToEdit.id;
+					}
 
 					let capitalizeWizardObject = Object.keys(wizardObject).reduce(
 						(acc, key) => {
-							acc[key] = capitalizeFunction(wizardObject[key]);
-							return acc;
+							console.log(key);
+							if (key.includes("id")) {
+								acc[key] = wizardObject[key];
+								return acc;
+							} else {
+								acc[key] = capitalizeFunction(wizardObject[key]);
+								return acc;
+							}
 						},
 						{}
 					);
+					console.log("Wiz Edit :", wizardToEdit, "Wiz Obj: ", wizardObject);
+					console.log("Cap wiz Obj", capitalizeWizardObject);
 
 					onSubmit(capitalizeWizardObject);
 

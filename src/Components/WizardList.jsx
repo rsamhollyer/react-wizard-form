@@ -12,7 +12,7 @@ export default function WizardList(props) {
 						onClick={(e) => {
 							props.chooseWizard(w);
 						}}
-						key={w.name}
+						key={w.id}
 					>
 						{w.name} : {w.job} - {w.house}
 					</li>
