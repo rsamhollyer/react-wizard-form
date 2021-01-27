@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { setToNull } from "../utils";
+import { setToNull, capitalizeFunction } from "../utils";
 
 const WizardForm = (props) => {
 	const [name, setName] = useState("");
@@ -7,11 +7,6 @@ const WizardForm = (props) => {
 	const [house, setHouse] = useState("");
 
 	const { onSubmit, title } = props;
-
-	const capitalizeFunction = (s) => {
-		s = s.toLowerCase();
-		return s.charAt(0).toUpperCase() + s.slice(1).trim();
-	};
 
 	return (
 		<section className="wizard-form-section">
@@ -21,14 +16,23 @@ const WizardForm = (props) => {
 				onSubmit={(e) => {
 					e.preventDefault();
 
-					const wizardObject = {
-						name: capitalizeFunction(name),
-						job: capitalizeFunction(job),
-						house: capitalizeFunction(house),
+					let wizardObject = {
+						name,
+						job,
+						house,
 					};
 
-					onSubmit(wizardObject);
-					setToNull("", [setName, setJob, setHouse]);
+					let capitalizeWizardObject = Object.keys(wizardObject).reduce(
+						(acc, key) => {
+							acc[key] = capitalizeFunction(wizardObject[key]);
+							return acc;
+						},
+						{}
+					);
+
+					onSubmit(capitalizeWizardObject);
+
+					setToNull([setName, setJob, setHouse]);
 				}}
 			>
 				<div className="form-group">
