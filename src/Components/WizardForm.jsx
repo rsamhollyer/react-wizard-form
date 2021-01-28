@@ -15,7 +15,7 @@ const WizardForm = (props) => {
 		// NEVER modify the variable you're watching.
 		// That causes an infinite loop
 
-		if (wizardToEdit) {
+		if (wizardToEdit.name) {
 			setName(wizardToEdit.name);
 			setJob(wizardToEdit.job);
 			setHouse(wizardToEdit.house);
@@ -36,29 +36,21 @@ const WizardForm = (props) => {
 						name,
 						job,
 						house,
-						id: uuidv4(),
 					};
-					console.log(wizardObject);
-
-					if (wizardToEdit) {
+					console.log(`WIZ OBJ : ${wizardObject.id}`);
+					console.log(`WIZ EDIT : ${wizardToEdit.id}`);
+					if (wizardToEdit.id) {
 						wizardObject.id = wizardToEdit.id;
 					}
 
 					let capitalizeWizardObject = Object.keys(wizardObject).reduce(
 						(acc, key) => {
-							console.log(key);
-							if (key.includes("id")) {
-								acc[key] = wizardObject[key];
-								return acc;
-							} else {
-								acc[key] = capitalizeFunction(wizardObject[key]);
-								return acc;
-							}
+							acc[key] = capitalizeFunction(wizardObject[key]);
+
+							return acc;
 						},
 						{}
 					);
-					console.log("Wiz Edit :", wizardToEdit, "Wiz Obj: ", wizardObject);
-					console.log("Cap wiz Obj", capitalizeWizardObject);
 
 					onSubmit(capitalizeWizardObject);
 

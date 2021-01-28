@@ -18,8 +18,9 @@ function App() {
 	const onSubmit = (wizard) => {
 		if (wizard.id) {
 			// const existingWizard = wizards.find((w) => w.id === wizard.id);
+			console.log(wizard.id);
 			const updatedWizards = wizards.map((w) => {
-				if (w.id === wizard.id) {
+				if (w.id == wizard.id) {
 					return wizard;
 				} else {
 					return w;
@@ -27,9 +28,9 @@ function App() {
 			});
 			setWizard(updatedWizards);
 		} else {
+			wizard.id = uuidv4();
+			setWizard([...wizards, wizard]);
 		}
-
-		setWizard([...wizards, wizard]);
 	};
 
 	return (

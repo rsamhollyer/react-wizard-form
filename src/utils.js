@@ -3,6 +3,10 @@ export const setToNull = (fnArray, empty = "") => {
 };
 
 export const capitalizeFunction = (s) => {
-	s = s.toLowerCase();
-	return s.charAt(0).toUpperCase() + s.slice(1).trim();
+	try {
+		s = s.toLowerCase();
+		return s.charAt(0).toUpperCase() + s.slice(1).trim();
+	} catch {
+		return s;
+	}
 };
