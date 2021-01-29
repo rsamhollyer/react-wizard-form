@@ -37,8 +37,7 @@ const WizardForm = (props) => {
 						job,
 						house,
 					};
-					console.log(`WIZ OBJ : ${wizardObject.id}`);
-					console.log(`WIZ EDIT : ${wizardToEdit.id}`);
+
 					if (wizardToEdit.id) {
 						wizardObject.id = wizardToEdit.id;
 					}
